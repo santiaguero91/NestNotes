@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Student {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
+type Lesson {
+  id: ID!
+  name: String!
+  startDate: String!
+  endDate: String!
+  students: [Student!]!
+}
+
+type Notegenre {
+  id: ID!
+  name: String!
+}
+
+type Note {
+  id: ID!
+  name: String!
+  description: String!
+  category: String!
+  genres: [Notegenre!]!
+}
+
+type Query {
+  lesson(id: String!): Lesson!
+  lessons: [Lesson!]!
+  students: [Student!]!
+  student(id: String!): Student!
+  getAllNotes: [Note!]!
+  getOneNote(id: String!): Note!
+  getSomeNotes(category: String!): [Note!]!
+  getNoteGenres: [Notegenre!]!
+}
+
+type Mutation {
+  createLesson(createLessonInput: CreateLessonInput!): Lesson!
+  assignStudentsToLesson(assignStudentsToLessonInput: AssignStudentsToLessonInput!): Lesson!
+  createStudent(createStudentInput: CreateStudentInput!): Student!
+  updateStudent(updateStudentInput: UpdateStudentInput!): Student!
+  removeStudent(id: String!): Student!
+  removeNote(id: String!): Note!
+  createNote(createNoteInput: CreateNoteInput!): Note!
+  updateNote(updateNoteInput: UpdateNoteInput!): Note!
+  assignGenrestoNote(assignGenrestoNoteInput: AssignGenreToNoteInput!): Note!
+  createNoteGenre(createNoteInput: CreateNoteGenreInput!): Notegenre!
+  removeNoteGenre(id: String!): Notegenre!
+}
+
+input CreateLessonInput {
+  name: String!
+  startDate: String!
+  endDate: String!
+  students: [ID!]! = []
+}
+
+input AssignStudentsToLessonInput {
+  lessonId: ID!
+  studentIds: [ID!]!
+}
+
+input CreateStudentInput {
+  firstName: String!
+  lastName: String!
+}
+
+input UpdateStudentInput {
+  id: String!
+  firstName: String!
+  lastName: String!
+}
+
+input CreateNoteInput {
+  name: String!
+  description: String!
+  category: String!
+  genres: [ID!]! = []
+}
+
+input UpdateNoteInput {
+  id: String!
+  name: String!
+  description: String!
+  category: String!
+  genres: [ID!]!
+}
+
+input AssignGenreToNoteInput {
+  noteId: ID!
+  genreIds: [ID!]!
+}
+
+input CreateNoteGenreInput {
+  name: String!
+}
